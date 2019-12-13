@@ -1,0 +1,43 @@
+{
+  "name": "united-states-africa-server",
+  "version": "1.0.0",
+  "description": "A typescript project",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "tsc",
+    "start-dev": "DB_HOST=127.0.0.1 DB_USER=root DB_PASSWORD=password DB_NAME=united_states_africa DB_DIALECT=mysql PORT=3000 DB_URL=mysql://root:password@127.0.0.1:3306/united_states_africa nodemon | pino-pretty --colorize -t 'SYS:standard'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ify Ndu",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bluebird": "^3.5.29",
+    "@types/express": "4.17.2",
+    "@types/express-pino-logger": "^4.0.2",
+    "@types/jest": "^24.0.23",
+    "@types/lodash": "4.14.149",
+    "@types/mysql": "^2.15.8",
+    "@types/node": "^12.12.17",
+    "@types/pino": "^5.14.0",
+    "@types/sequelize": "^4.28.8",
+    "@types/validator": "^12.0.1",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "3.7.3"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "express-pino-logger": "^4.0.0",
+    "lodash": "4.17.15",
+    "mysql": "^2.17.1",
+    "mysql2": "^2.0.2",
+    "pino": "^5.14.0",
+    "pino-pretty": "^3.5.0",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^5.21.2",
+    "sequelize-cli": "^5.5.1",
+    "sequelize-typescript": "^1.1.0",
+    "ts-node": "8.5.4",
+    "uuid": "3.3.3"
+  }
+}
