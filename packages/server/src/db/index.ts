@@ -1,10 +1,4 @@
-import { Sequelize } from 'sequelize-typescript';
+import * as video from './video';
 
 
-export default {
-
-  init: (url: string): Sequelize => {
-
-    return new Sequelize(url, { modelPaths: [__dirname + '/models'] });
-  }
-}
+export default { video };

@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { Context } from 'usa-types';
+import { Context, Domain } from 'usa-types';
 
 
 const router = Router();
 
-export default (ctx): Context => {
+export default (ctx: Domain): Context => {
 
   return { ctx, router }
 }

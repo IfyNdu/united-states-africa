@@ -1,5 +1,6 @@
 import express from 'express';
-import { Context, loggerInterface, Sequelize } from 'usa-types';
+import bodyParser from 'body-parser';
+import { Context, LoggerInterface, Sequelize } from 'usa-types';
 import router from './router';
 
 
@@ -8,9 +9,10 @@ const PORT = process.env.PORT;
 
 export default {
 
-  init: (sequelize: Sequelize, ctx: Context, { logger, middleware }: loggerInterface) => {
+  init: (sequelize: Sequelize, ctx: Context, { logger, middleware }: LoggerInterface) => {
 
     app.use(middleware);
+    app.use(bodyParser.json());
     app.use('/api', router(ctx));
 
     sequelize
@@ -24,6 +26,10 @@ export default {
 
           return logger.info(`server is listening on ${PORT}`);
         });
+      })
+      .catch(error => {
+        logger.info({ message: 'Sequelise Failes to start [ERROR]', error });
+        process.exit(1);
       });
   }
 }
