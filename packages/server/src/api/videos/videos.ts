@@ -1,7 +1,7 @@
-import { Context, Router } from 'usa-types';
+import { Context } from 'usa-types';
 
 
-export default ({ ctx, router }: Context): Router => {
+export default (router: Context): Context => {
 
   router.get('/video', (__, res) => {
 
@@ -12,10 +12,16 @@ export default ({ ctx, router }: Context): Router => {
 
     res.send({ video: `THIS ${req.params.id} VIDEO` });
   });
+  
+  router.post('/video/tag', async (req, res) => {
+
+    const data = await router.ctx.video.addTag(req.body);
+    res.send({ data });
+  });
 
   router.post('/video/category', async (req, res) => {
 
-    const data = await ctx.video.addCategory(req.body);
+    const data = await router.ctx.video.addCategory(req.body);
     res.send({ data });
   });
 

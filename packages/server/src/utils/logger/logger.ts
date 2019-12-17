@@ -2,7 +2,7 @@ import pino from 'pino';
 import pinoExpress from 'express-pino-logger';
 
 
-const logger = pino();
-const middleware = pinoExpress({ logger });
+const logger: any = pino();
+logger.middleware = pinoExpress({ logger });
 
-export default { logger, middleware };
+export default logger;
