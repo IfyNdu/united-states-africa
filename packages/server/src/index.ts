@@ -7,11 +7,13 @@ import Domain from './domain'
 const startServer = async () => {
 
   const url = process.env.DB_URL;
-  const { video } = Domain
+  const { config, video } = Domain
 
   const sequelise = Sequelize.init(url);
+
   const ctx = router({
-    video: video(logger.logger)
+    config: config(logger),
+    video: video(logger)
   });
 
   Api.init(sequelise, ctx, logger);

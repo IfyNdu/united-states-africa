@@ -1,11 +1,12 @@
-import { Context, Router } from 'usa-types';
+import { Context } from 'usa-types';
 
 
-export default ({ router }: Context): Router => {
+export default (router: Context): Context => {
 
-  router.get('/', (__, res) => {
+  router.post('/', async (req, res) => {
 
-    res.send({ expense: 'EXPENSE!!!' });
+    const data = await router.ctx.config.addImage(req.body);
+    res.send({ data });
   });
 
   return router;

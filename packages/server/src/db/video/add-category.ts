@@ -3,13 +3,16 @@ import { VideoCategory as VidCategoryModel, VideoCategoryResponse } from 'usa-ty
 import VideoCategory from '../models/video-category';
 
 
-const parse = ({ description, id, image_url }: VidCategoryModel): VideoCategoryResponse => {
+const parse = (categories: Array<VideoCategory>) => {
 
-  return { description, id, imageUrl: image_url }
+  return fp.map(({ description, id, image_url }) => {
+
+    return { description, id, imageUrl: image_url }
+  }, categories)
 }
 
-export default async (body: Array<VidCategoryModel>) => {
+export default async (body: Array<VidCategoryModel>): Promise<Array<VideoCategoryResponse>> => {
 
   const res = await VideoCategory.bulkCreate(body);
-  return fp.map(parse, res)
+  return parse(res)
 }

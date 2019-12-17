@@ -2,9 +2,6 @@ import { IRouter } from 'express';
 import { Domain } from './domain'
 
 
-export type Router = IRouter
-
-export interface Context {
+export interface Context extends IRouter {
   ctx: Domain
-  router: IRouter
 };

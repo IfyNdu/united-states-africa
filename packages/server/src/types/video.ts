@@ -9,8 +9,11 @@ export interface VideoCategoryRequest {
   imageUrl: string
 }
 
-export interface VideoCategoryResponse {
-  description: string
+export interface VideoCategoryResponse extends VideoCategoryRequest {
   id: string
-  imageUrl: string
+}
+
+export interface VideoTag {
+  id: string
+  name: string
 }

@@ -1,0 +1,1 @@
+export { default as addImage } from './add-image'
