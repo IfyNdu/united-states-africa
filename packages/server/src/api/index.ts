@@ -1,26 +1,26 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { Context, LoggerInterface, Sequelize } from 'usa-types';
-import router from './router';
+import { Context, LoggerInstance, Sequelize } from 'usa-types';
+import routes from './routes';
 
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.APP_PORT;
 
 export default {
 
-  init: (sequelize: Sequelize, ctx: Context, { logger, middleware }: LoggerInterface) => {
+  init: (sequelize: Sequelize, router: Context, logger: LoggerInstance) => {
 
-    app.use(middleware);
+    app.use(logger.middleware);
     app.use(bodyParser.json());
-    app.use('/api', router(ctx));
+    app.use('/api', routes(router));
 
     sequelize
       .sync({ force: false })
       .then(({ config }) => {
 
         logger.info({ message: 'Sequelise started [SUCCESSFULLY]', config });
-        app.listen(process.env.PORT, err => {
+        app.listen(PORT, err => {
 
           if (err) { return logger.error(err); }
 
@@ -28,7 +28,7 @@ export default {
         });
       })
       .catch(error => {
-        logger.info({ message: 'Sequelise Failes to start [ERROR]', error });
+        logger.info({ message: 'Sequelise Failed to start [ERROR]', error });
         process.exit(1);
       });
   }

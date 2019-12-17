@@ -9,7 +9,7 @@ import {
 } from 'sequelize-typescript';
 
 
-@Table@Table({ tableName: 'app_static' })
+@Table({ tableName: 'app_static' })
 export default class AppStatic extends Model<AppStatic> {
 
   @PrimaryKey

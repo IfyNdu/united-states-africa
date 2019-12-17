@@ -1,6 +1,26 @@
+export {
+  AppImage,
+  AppImageRequest,
+  AppImageResponse,
+  AppStatics,
+  AppStaticsRequest,
+  AppStaticsResponse
+} from './config';
 export { Domain } from './domain';
-export { Context, Router } from './express';
+export { Context } from './express';
 export { HttpStatusCode } from './http-status-code';
-export { Logger, LoggerInterface } from './logger';
+export { LoggerInstance } from './logger';
 export { Sequelize } from './sequelize';
-export { VideoCategory, VideoCategoryResponse, VideoCategoryRequest } from './video';
+export {
+  TaggedVideo,
+  TaggedVideoRequest,
+  TaggedVideoResponse,
+  Video,
+  VideoCategory,
+  VideoCategoryResponse,
+  VideoCategoryRequest,
+  VideoRequest,
+  VideoResponse,
+  VideoSource,
+  VideoTag
+} from './video';

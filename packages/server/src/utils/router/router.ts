@@ -2,9 +2,10 @@ import { Router } from 'express';
 import { Context, Domain } from 'usa-types';
 
 
-const router = Router();
+const router: any = Router();
 
 export default (ctx: Domain): Context => {
 
-  return { ctx, router }
+  router.ctx = ctx;
+  return router;
 }

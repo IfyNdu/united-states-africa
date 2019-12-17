@@ -3,7 +3,6 @@ import { RequestHandler } from 'express'
 
 
 export type Logger = BaseLogger
-export interface LoggerInterface {
-  logger: Logger,
+export interface LoggerInstance extends BaseLogger {
   middleware: RequestHandler
 };

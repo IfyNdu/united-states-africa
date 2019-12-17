@@ -1,4 +1,5 @@
 import {
+  BelongsTo,
   Column,
   CreatedAt,
   DataType,
@@ -9,9 +10,10 @@ import {
   UpdatedAt
 } from 'sequelize-typescript';
 import VideoCategory from './video-category';
+import VideoSource from './video-source';
 
 
-@Table@Table({ tableName: 'video' })
+@Table({ tableName: 'video' })
 export default class Video extends Model<Video> {
 
   @PrimaryKey
@@ -22,17 +24,33 @@ export default class Video extends Model<Video> {
   @Column
   video_category_id!: string;
 
+  @BelongsTo(() => VideoCategory)
+  vc: VideoCategory;
+
+  @ForeignKey(() => VideoSource)
+  @Column
+  video_source_id!: string;
+
+  @BelongsTo(() => VideoSource)
+  vs: VideoSource;
+
   @Column(DataType.TEXT)
   title!: string;
 
   @Column(DataType.TEXT)
+  video_id!: string;
+
+  @Column(DataType.TEXT)
   description?: string;
+
+  @Column(DataType.MEDIUMINT)
+  duration?: number;
+
+  @Column(DataType.TEXT)
+  definition?: string;
 
   @Column(DataType.TEXT)
   image_url?: string;
-
-  @Column(DataType.TEXT)
-  video_link!: string;
 
   @CreatedAt
   @Column

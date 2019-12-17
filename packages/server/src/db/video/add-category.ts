@@ -1,15 +1,16 @@
 import fp from 'lodash/fp';
-import { VideoCategory as VidCategoryModel, VideoCategoryResponse } from 'usa-types';
+import { VideoCategory as VideoCategoryModel, VideoCategoryResponse } from 'usa-types';
 import VideoCategory from '../models/video-category';
+import * as Utils from '../utils';
 
 
-const parse = ({ description, id, image_url }: VidCategoryModel): VideoCategoryResponse => {
+const parse = (categories: Array<VideoCategory>) => {
 
-  return { description, id, imageUrl: image_url }
+  return fp.map(Utils.toCamelCase, categories)
 }
 
-export default async (body: Array<VidCategoryModel>) => {
+export default async (body: Array<VideoCategoryModel>): Promise<Array<VideoCategoryResponse>> => {
 
   const res = await VideoCategory.bulkCreate(body);
-  return fp.map(parse, res)
+  return parse(res)
 }

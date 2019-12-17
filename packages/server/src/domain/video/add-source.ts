@@ -2,29 +2,27 @@ import fp from 'lodash/fp';
 import {
   HttpStatusCode,
   LoggerInstance,
-  VideoCategory,
-  VideoCategoryRequest
+  VideoSource
 } from 'usa-types';
 import { RequestError } from 'usa-utils';
 import uuidv1 from 'uuid/v1';
 import Db from '../../db';
-import * as Utils from '../utils';
 import * as Validators from './validators';
 
 
-const parseRequest = (request: VideoCategoryRequest): VideoCategory => {
+const parseRequest = (name: string): VideoSource => {
 
   return {
-    ...Utils.toSnakeCase(request),
-    id: uuidv1()
+    id: uuidv1(),
+    name
   }
 }
 
-export default async (body: Array<VideoCategoryRequest>, logger: LoggerInstance) => {
+export default async (body: Array<string>, logger: LoggerInstance) => {
 
-  logger.info({ message: `Adding new video category ${JSON.stringify(body)}`});
+  logger.info({ message: `Adding new video source ${JSON.stringify(body)}`});
 
-  if (!Validators.videoCategory(body)) {
+  if (!Validators.videoSource(body)) {
 
     const message = 'Incorrectly Formatted request';
 
@@ -38,6 +36,5 @@ export default async (body: Array<VideoCategoryRequest>, logger: LoggerInstance)
   }
 
   const req = fp.map(parseRequest, body);
-
-  return await Db.video.addCategory(req);
+  return await Db.video.addSource(req);
 }

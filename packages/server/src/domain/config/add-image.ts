@@ -1,9 +1,9 @@
 import fp from 'lodash/fp';
 import {
+  AppImage,
+  AppImageRequest,
   HttpStatusCode,
-  LoggerInstance,
-  VideoCategory,
-  VideoCategoryRequest
+  LoggerInstance
 } from 'usa-types';
 import { RequestError } from 'usa-utils';
 import uuidv1 from 'uuid/v1';
@@ -12,7 +12,7 @@ import * as Utils from '../utils';
 import * as Validators from './validators';
 
 
-const parseRequest = (request: VideoCategoryRequest): VideoCategory => {
+const parseRequest = (request: AppImageRequest): AppImage => {
 
   return {
     ...Utils.toSnakeCase(request),
@@ -20,11 +20,11 @@ const parseRequest = (request: VideoCategoryRequest): VideoCategory => {
   }
 }
 
-export default async (body: Array<VideoCategoryRequest>, logger: LoggerInstance) => {
+export default async (body: Array<AppImageRequest>, logger: LoggerInstance) => {
 
-  logger.info({ message: `Adding new video category ${JSON.stringify(body)}`});
+  logger.info({ message: `Adding new app images ${JSON.stringify(body)}`});
 
-  if (!Validators.videoCategory(body)) {
+  if (!Validators.appImages(body)) {
 
     const message = 'Incorrectly Formatted request';
 
@@ -38,6 +38,5 @@ export default async (body: Array<VideoCategoryRequest>, logger: LoggerInstance)
   }
 
   const req = fp.map(parseRequest, body);
-
-  return await Db.video.addCategory(req);
+  return await Db.config.addImage(req);
 }
