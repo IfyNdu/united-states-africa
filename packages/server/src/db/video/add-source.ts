@@ -1,6 +1,6 @@
 import fp from 'lodash/fp';
-import { VideoTag as Model } from 'usa-types';
-import Tag from '../models/tag';
+import { VideoSource as Model } from 'usa-types';
+import VideoSource from '../models/video-source';
 
 
 const parse = (tags: Array<Model>) => {
@@ -13,6 +13,6 @@ const parse = (tags: Array<Model>) => {
 
 export default async (body: Array<Model>): Promise<Array<Model>> => {
 
-  const res = await Tag.bulkCreate(body);
+  const res = await VideoSource.bulkCreate(body);
   return parse(res)
 }

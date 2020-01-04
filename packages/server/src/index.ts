@@ -1,6 +1,6 @@
 import { logger, router } from 'usa-utils';
 import Api from './api';
-import Sequelize from './db/sequelize/sequelize';
+import Sequelize from './db/sequelize';
 import Domain from './domain'
 
 
@@ -12,7 +12,7 @@ const startServer = async () => {
   const sequelise = Sequelize.init(url);
 
   const ctx = router({
-    config: config(logger),
+    config: config(sequelise, logger),
     video: video(logger)
   });
 

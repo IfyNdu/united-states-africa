@@ -1,17 +1,15 @@
 import fp from 'lodash/fp';
-import { AppImage as Model, AppImageResponse } from 'usa-types';
+import { AppImage as AppImageModel, AppImageResponse } from 'usa-types';
 import AppImage from '../models/app-image';
+import * as Utils from '../utils';
 
 
-const parse = (tags: Array<Model>) => {
+const parse = (tags: Array<AppImage>) => {
 
-  return fp.map(({ banner_image_url, id }) => {
-
-    return { bannerImageUrl: banner_image_url, id }
-  }, tags)
+  return fp.map(Utils.toCamelCase, tags)
 }
 
-export default async (body: Array<Model>): Promise<Array<AppImageResponse>> => {
+export default async (body: Array<AppImageModel>): Promise<Array<AppImageResponse>> => {
 
   const res = await AppImage.bulkCreate(body);
   return parse(res)

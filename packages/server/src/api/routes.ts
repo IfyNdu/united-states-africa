@@ -1,6 +1,6 @@
 import { Context } from 'usa-types';
-import config from './config/config'
-import videos from './videos/videos'
+import config from './config/config';
+import videos from './videos/videos';
 
 
 export default (router: Context): Context => {

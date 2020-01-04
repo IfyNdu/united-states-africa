@@ -20,7 +20,7 @@ const data = [{ bannerImageUrl: 'test-1 is long enough' }]
 
 const logger = mockLogger.init()
 
-describe('addCategory', () => {
+describe('addImage', () => {
 
   it('accepts an array of images and calls Sequelize', async () => {
 

@@ -8,20 +8,21 @@ import {
 import { RequestError } from 'usa-utils';
 import uuidv1 from 'uuid/v1';
 import Db from '../../db';
+import * as Utils from '../utils';
 import * as Validators from './validators';
 
 
-const parseRequest = ({ bannerImageUrl }: AppImageRequest): AppImage => {
+const parseRequest = (request: AppImageRequest): AppImage => {
 
   return {
-    banner_image_url: bannerImageUrl,
+    ...Utils.toSnakeCase(request),
     id: uuidv1()
   }
 }
 
 export default async (body: Array<AppImageRequest>, logger: LoggerInstance) => {
 
-  logger.info({ message: `Adding new app images ${JSON.stringify(body)}` });
+  logger.info({ message: `Adding new app images ${JSON.stringify(body)}`});
 
   if (!Validators.appImages(body)) {
 

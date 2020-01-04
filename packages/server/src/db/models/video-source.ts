@@ -11,8 +11,8 @@ import {
 import Video from './video';
 
 
-@Table({ tableName: 'video_category' })
-export default class VideoCategory extends Model<VideoCategory> {
+@Table({ tableName: 'video_source' })
+export default class VideoSource extends Model<VideoSource> {
 
   @PrimaryKey
   @Column
@@ -22,10 +22,7 @@ export default class VideoCategory extends Model<VideoCategory> {
   video: Array<Video>;
 
   @Column(DataType.TEXT)
-  description?: string;
-
-  @Column(DataType.TEXT)
-  image_url?: string;
+  name?: string;
 
   @CreatedAt
   @Column
