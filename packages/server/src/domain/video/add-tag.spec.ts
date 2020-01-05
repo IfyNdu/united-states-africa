@@ -10,11 +10,10 @@ jest.mock('uuid/v1', () => {
 });
 
 const mockTag = [{
-  name: 'test video tag',
-  id: 'mock-id'
+  id: 'test video tag'
 }]
 
-dbAddTagMock.mockReturnValue(Promise.resolve(mockTag))
+dbAddTagMock.mockReturnValue(null);
 
 const data = ['test video tag']
 
@@ -28,12 +27,6 @@ describe('addTag', () => {
 
     expect(dbAddTagMock).toHaveBeenCalledTimes(1);
     expect(dbAddTagMock).toHaveBeenCalledWith(mockTag);
-  });
-
-  it('should add a new tag', async () => {
-
-    const res = await addTag(data, logger)
-    expect(res).toBe(mockTag);
   });
 
   it('should throw an error if the tags are not passed in as an array', async () => {
@@ -52,11 +45,11 @@ describe('addTag', () => {
       .catch(err => { expect(err).toEqual(expect.any(Error)) })
   });
 
-  it('should throw an error if tag name doesnt meet minimum length', async () => {
+  it('should throw an error if tag name isnt alphabetical', async () => {
 
     expect.assertions(1)
 
-    return addTag(['invalid'] as any, logger)
+    return addTag(['invalid0-98'] as any, logger)
       .catch(err => { expect(err).toEqual(expect.any(Error)) })
   });
 })

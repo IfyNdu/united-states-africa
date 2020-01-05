@@ -1,12 +1,12 @@
 export interface VideoCategory {
   description: string
   id: string
-  image_url: string
+  thumbnail: string
 }
 
 export interface VideoCategoryRequest {
   description: string
-  imageUrl: string
+  thumbnail: string
 }
 
 export interface VideoCategoryResponse extends VideoCategoryRequest {
@@ -15,7 +15,6 @@ export interface VideoCategoryResponse extends VideoCategoryRequest {
 
 export interface VideoTag {
   id: string
-  name: string
 }
 
 export interface VideoSource {
@@ -24,12 +23,8 @@ export interface VideoSource {
 }
 
 export interface VideoRequest {
-  description: string
-  imageUrl: string
   sourceId: string
-  title: string
   videoCategoryId: string
-  videoId: string
   videoSourceId: string
 }
 
@@ -38,14 +33,22 @@ export interface VideoResponse extends VideoRequest {
 }
 
 export interface Video {
+  definition: string
   description: string
+  duration: number
   id: string
-  image_url: string
-  source_id: string
+  thumbnail: string
   title: string
   video_category_id: string
-  video_id: string
+  source_id: string
   video_source_id: string
+}
+export interface YoutubeResponse {
+  definition?: string
+  description?: string
+  duration?: number
+  thumbnail?: string
+  title?: string
 }
 
 export interface TaggedVideoRequest {
@@ -53,12 +56,7 @@ export interface TaggedVideoRequest {
   videoId: string
 }
 
-export interface TaggedVideoResponse extends TaggedVideoRequest {
-  id: string
-}
-
 export interface TaggedVideo {
   tag_id: string
-  id: string
   video_id: string
 }

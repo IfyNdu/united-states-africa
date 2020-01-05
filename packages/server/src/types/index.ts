@@ -1,3 +1,4 @@
+export { AxiosInstance } from './axios';
 export {
   AppImage,
   AppImageRequest,
@@ -11,10 +12,10 @@ export { Context } from './express';
 export { HttpStatusCode } from './http-status-code';
 export { LoggerInstance } from './logger';
 export { Sequelize } from './sequelize';
+export { Services } from './services';
 export {
   TaggedVideo,
   TaggedVideoRequest,
-  TaggedVideoResponse,
   Video,
   VideoCategory,
   VideoCategoryResponse,
@@ -22,5 +23,6 @@ export {
   VideoRequest,
   VideoResponse,
   VideoSource,
-  VideoTag
+  VideoTag,
+  YoutubeResponse
 } from './video';

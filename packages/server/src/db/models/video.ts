@@ -38,7 +38,7 @@ export default class Video extends Model<Video> {
   title!: string;
 
   @Column(DataType.TEXT)
-  video_id!: string;
+  source_id!: string;
 
   @Column(DataType.TEXT)
   description?: string;
@@ -50,7 +50,7 @@ export default class Video extends Model<Video> {
   definition?: string;
 
   @Column(DataType.TEXT)
-  image_url?: string;
+  thumbnail?: string;
 
   @CreatedAt
   @Column

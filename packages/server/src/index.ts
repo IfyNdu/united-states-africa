@@ -1,22 +1,22 @@
 import { logger, router } from 'usa-utils';
 import Api from './api';
-import Sequelize from './db/sequelize';
 import Domain from './domain'
+import Services from './services';
+import Sequelize from './db/sequelize';
 
 
-const startServer = async () => {
+(async () => {
 
   const url = process.env.DB_URL;
   const { config, video } = Domain
-
+  
+  const services = Services.init({ youtubeKey: 'AIzaSyBDzeadcNLhGfcGvApwnaoEP7A8Z3JO6n4' }, logger)
   const sequelise = Sequelize.init(url);
 
   const ctx = router({
     config: config(sequelise, logger),
-    video: video(logger)
+    video: video(services, logger)
   });
 
   Api.init(sequelise, ctx, logger);
-}
-
-startServer();
+})();

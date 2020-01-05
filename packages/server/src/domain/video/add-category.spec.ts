@@ -12,14 +12,14 @@ jest.mock('uuid/v1', () => {
 const mockCategory = [{
   description: 'test-1 is long enough',
   id: 'id-1',
-  imageUrl: 'testing-url'
+  thumbnail: 'http://www.goodurl.com'
 }]
 
 dbAddCategoryMock.mockReturnValue(Promise.resolve(mockCategory))
 
 const data = [{
   description: 'test-1 is long enough',
-  imageUrl: 'testing-url'
+  thumbnail: 'http://www.goodurl.com'
 }]
 
 const logger = mockLogger.init()
@@ -34,7 +34,7 @@ describe('addCategory', () => {
     expect(dbAddCategoryMock).toHaveBeenCalledWith([{
       description: 'test-1 is long enough',
       id: 'id-1',
-      image_url: 'testing-url'
+      thumbnail: 'http://www.goodurl.com'
     }]);
   });
 
@@ -48,7 +48,7 @@ describe('addCategory', () => {
 
     expect.assertions(1)
 
-    return addCategory({ description: 'test-1', imageUrl: 'testing-url' } as any, logger)
+    return addCategory({ description: 'test-1', thumbnail: 'http://www.goodurl.com' } as any, logger)
       .catch(err => { expect(err).toEqual(expect.any(Error)) })
   });
 
@@ -56,7 +56,7 @@ describe('addCategory', () => {
 
     expect.assertions(1)
 
-    return addCategory([{ description: 555, imageUrl: {} }] as any, logger)
+    return addCategory([{ description: 555, thumbnail: {} }] as any, logger)
       .catch(err => { expect(err).toEqual(expect.any(Error)) })
   });
 
@@ -64,7 +64,7 @@ describe('addCategory', () => {
 
     expect.assertions(1)
 
-    return addCategory([{ description: 'invalid', imageUrl: 'url' }] as any, logger)
+    return addCategory([{ description: 'invalid', thumbnail: 'url' }] as any, logger)
       .catch(err => { expect(err).toEqual(expect.any(Error)) })
   });
 })

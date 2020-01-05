@@ -25,7 +25,7 @@ export default class VideoCategory extends Model<VideoCategory> {
   description?: string;
 
   @Column(DataType.TEXT)
-  image_url?: string;
+  thumbnail?: string;
 
   @CreatedAt
   @Column

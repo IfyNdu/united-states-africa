@@ -16,9 +16,6 @@ export default class Tag extends Model<Tag> {
   @Column
   id!: string;
 
-  @Column(DataType.TEXT)
-  name!: string;
-
   @CreatedAt
   @Column
   created_at!: Date;

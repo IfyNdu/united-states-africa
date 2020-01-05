@@ -14,10 +14,6 @@ import Video from './video';
 @Table({ tableName: 'video_tag' })
 export default class VideoTag extends Model<VideoTag> {
 
-  @PrimaryKey
-  @Column
-  id!: string;
-
   @ForeignKey(() => Video)
   @PrimaryKey
   @Column
