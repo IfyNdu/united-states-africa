@@ -3,16 +3,12 @@ import { VideoTag as Model } from 'usa-types';
 import Tag from '../models/tag';
 
 
-const parse = (tags: Array<Model>) => {
+const parse = data => {
 
-  return fp.map(({ id, name }) => {
-
-    return { id, name }
-  }, tags)
+  return Tag.upsert(data, { returning: true });
 }
 
-export default async (body: Array<Model>): Promise<Array<Model>> => {
+export default async (body: Array<Model>) => {
 
-  const res = await Tag.bulkCreate(body);
-  return parse(res)
+  await Promise.all(fp.map(parse, body));
 }

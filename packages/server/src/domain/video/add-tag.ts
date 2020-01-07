@@ -5,17 +5,13 @@ import {
   VideoTag
 } from 'usa-types';
 import { RequestError } from 'usa-utils';
-import uuidv1 from 'uuid/v1';
 import Db from '../../db';
 import * as Validators from './validators';
 
 
-const parseRequest = (name: string): VideoTag => {
+const parseRequest = (id: string): VideoTag => {
 
-  return {
-    id: uuidv1(),
-    name
-  }
+  return { id }
 }
 
 export default async (body: Array<string>, logger: LoggerInstance) => {
@@ -36,5 +32,5 @@ export default async (body: Array<string>, logger: LoggerInstance) => {
   }
 
   const req = fp.map(parseRequest, body);
-  return await Db.video.addTag(req);
+  await Db.video.addTag(req);
 }
