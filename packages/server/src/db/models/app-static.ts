@@ -2,6 +2,7 @@ import {
   Column,
   CreatedAt,
   DataType,
+  DefaultScope,
   Model,
   PrimaryKey,
   Table,
@@ -9,6 +10,9 @@ import {
 } from 'sequelize-typescript';
 
 
+@DefaultScope(() => ({
+  attributes: ['id', 'banner_title', 'banner_body']
+}))
 @Table({ tableName: 'app_static' })
 export default class AppStatic extends Model<AppStatic> {
 

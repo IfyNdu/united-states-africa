@@ -1,6 +1,7 @@
 import {
   Column,
   CreatedAt,
+  DefaultScope,
   ForeignKey,
   Model,
   PrimaryKey,
@@ -11,6 +12,9 @@ import Tag from './tag';
 import Video from './video';
 
 
+@DefaultScope(() => ({
+  attributes: ['tag_id', 'video_id']
+}))
 @Table({ tableName: 'video_tag' })
 export default class VideoTag extends Model<VideoTag> {
 

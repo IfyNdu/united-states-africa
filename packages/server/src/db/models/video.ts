@@ -3,6 +3,7 @@ import {
   Column,
   CreatedAt,
   DataType,
+  DefaultScope,
   ForeignKey,
   Model,
   PrimaryKey,
@@ -13,6 +14,17 @@ import VideoCategory from './video-category';
 import VideoSource from './video-source';
 
 
+@DefaultScope(() => ({
+  attributes: [
+    'id',
+    'title',
+    'source_id',
+    'description',
+    'duration',
+    'definition',
+    'thumbnail'
+  ]
+}))
 @Table({ tableName: 'video' })
 export default class Video extends Model<Video> {
 
