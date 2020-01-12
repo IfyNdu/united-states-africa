@@ -1,7 +1,7 @@
 import {
   Column,
   CreatedAt,
-  DataType,
+  DefaultScope,
   Model,
   PrimaryKey,
   Table,
@@ -9,6 +9,9 @@ import {
 } from 'sequelize-typescript';
 
 
+@DefaultScope(() => ({
+  attributes: ['id']
+}))
 @Table({ tableName: 'tag' })
 export default class Tag extends Model<Tag> {
 

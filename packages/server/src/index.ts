@@ -5,7 +5,7 @@ import Services from './services';
 import Sequelize from './db/sequelize';
 
 
-(async () => {
+(() => {
 
   const url = process.env.DB_URL;
   const { config, video } = Domain

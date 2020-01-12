@@ -5,7 +5,7 @@ import youtube from './youtube';
 jest.mock('axios', () => {
   return {
     get: () => ({
-      data: { items: [] }
+      data: Promise.resolve({ items: [] })
     })
   };
 });
